@@ -8,13 +8,27 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home/home.component';
 import { AuthGuard } from './_guards';
+import { IncidentListComponent } from './shared/incident/list/list.component'
+import { MainMenuComponent } from './shared/menu/main/menu.component';
+import { IncidentComponent } from './incident/incident.component';
+import { MachineComponent } from './machine/machine.component';
+import { RegisterComponent } from './login/register/register.component';
+import { IncidentCreateComponent } from './incident/create/create.component';
+import { MachineCreateComponent } from './machine/create/create.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    IncidentListComponent,
+    MainMenuComponent,
+    IncidentComponent,
+    MachineComponent,
+    RegisterComponent,
+    IncidentCreateComponent,
+    MachineCreateComponent
   ],
   imports: [
     BrowserModule,

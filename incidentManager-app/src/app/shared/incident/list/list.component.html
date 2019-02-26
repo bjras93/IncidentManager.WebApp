@@ -1,0 +1,7 @@
+<div class="incident-menu">
+<ul>
+  <li *ngFor="let incident of incidents;">
+    <a href="/incident/detail/{{incident.id}}">{{incident.header}} {{incident.createdBy}}</a>
+  </li>
+</ul>
+</div>

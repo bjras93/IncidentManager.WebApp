@@ -16,10 +16,20 @@ const httpOptions = {
 export class IncidentService {
 
   constructor(private http:HttpClient) { }
-  getAll() {          
-    return this.http.get<Incident[]>(environment.apiUrl + "Incident/GetAll",httpOptions).pipe(map(incidents => {
-     
-      return incidents;
+  get(id:number) {      
+           
+    return this.http.post<Incident>(environment.apiUrl + "Incident/Get", { "id":id}, httpOptions).pipe(map(incident => {     
+      return incident;
     }));
+  }
+  create(id:number, locationId?:number) {          
+    return this.http.post<number>(environment.apiUrl + "Incident/Create", { "id":id, "locationId": locationId},httpOptions).pipe(map(id => {     
+      return id;
+    }));
+  }
+  getAll() {          
+    return this.http.get<Incident[]>(environment.apiUrl + "Incident/GetAll",httpOptions).pipe(map(incidents => {     
+      return incidents;
+    }));;
   }
 }

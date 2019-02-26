@@ -1,0 +1,11 @@
+<form [formGroup]="create" (ngSubmit)="onSubmit()">
+<div>
+  <span>Name</span><input type="text" formControlName="name">
+</div>
+<div>
+  <span>Location</span><input type="text" formControlName="locationId">
+</div>
+<div>
+  <button>Submit</button>
+</div>
+</form>

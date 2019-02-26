@@ -1,0 +1,21 @@
+<h3>{{incident.header}}</h3>
+<select >
+  <option *ngFor="let machine of machines;">{{machine.name}}</option>
+</select>
+<textarea>{{incident.description}}</textarea>
+<div>
+  <span>Created by: </span>{{incident.createdBy.name}}
+  </div>
+{{incident.assignedTo.name}}
+<div>
+  <div>Comment</div>
+  <textarea></textarea>
+  <div *ngFor="let comment of incident.comments;">
+    <div>
+      {{comment.user.Name}}
+    </div>
+    <div>
+      {{comment.text}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<p>
+  {{currentUser.name}}
+
+</p>
+<ul>
+<li *ngFor="let incident of incidents;">
+  {{incident.header}} {{incident.createdBy}}
+</li>
+</ul>

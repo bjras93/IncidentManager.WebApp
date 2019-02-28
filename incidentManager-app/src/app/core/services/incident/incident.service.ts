@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Incident } from '../../models/incident';
+import { Comment } from '../../models/comment';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -22,8 +23,8 @@ export class IncidentService {
       return incident;
     }));
   }
-  create(id:number, locationId?:number) {          
-    return this.http.post<number>(environment.apiUrl + "Incident/Create", { "id":id, "locationId": locationId},httpOptions).pipe(map(id => {     
+  create(createdBy:number, assignedTo:number, header:string, description:string, machineId: number) {          
+    return this.http.post<number>(environment.apiUrl + "Incident/Create", { createdBy, assignedTo, header, description, machineId},httpOptions).pipe(map(id => {     
       return id;
     }));
   }
@@ -31,5 +32,10 @@ export class IncidentService {
     return this.http.get<Incident[]>(environment.apiUrl + "Incident/GetAll",httpOptions).pipe(map(incidents => {     
       return incidents;
     }));;
+  }
+  comment(createdBy:number, incidentId: number, text: string) {          
+    return this.http.post<Comment>(environment.apiUrl + "Incident/Comment", { createdBy, incidentId, text },httpOptions).pipe(map(comments => {     
+      return comments;
+    }));
   }
 }

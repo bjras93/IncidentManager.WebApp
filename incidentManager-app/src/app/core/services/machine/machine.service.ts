@@ -3,6 +3,7 @@ import { Machine } from '../../models/machine';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Location } from '../../models/location';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,8 +20,8 @@ export class MachineService {
       return machine;
     }));
   }
-  create(id:number, locationId?:number) {          
-    return this.http.post<number>(environment.apiUrl + "Machine/Create", { "id":id, "locationId": locationId},httpOptions).pipe(map(id => {     
+  create(name:string, location:string) {          
+    return this.http.post<number>(environment.apiUrl + "Machine/Create", { "name":name, "location": location },httpOptions).pipe(map(id => {     
       return id;
     }));
   }

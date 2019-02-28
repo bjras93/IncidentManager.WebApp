@@ -1,21 +1,43 @@
-<h3>{{incident.header}}</h3>
-<select >
-  <option *ngFor="let machine of machines;">{{machine.name}}</option>
-</select>
-<textarea>{{incident.description}}</textarea>
-<div>
-  <span>Created by: </span>{{incident.createdBy.name}}
-  </div>
-{{incident.assignedTo.name}}
-<div>
-  <div>Comment</div>
-  <textarea></textarea>
-  <div *ngFor="let comment of incident.comments;">
-    <div>
-      {{comment.user.Name}}
+<div class="col-md-8" *ngIf="incident">
+  <h3>{{incident.header}}</h3>
+  <div class="row">
+  <div class="form-group col-md-4">
+    <div class="row">
+      <div class="col-md-12 mb-2">
+        <input type="text" class="form-control" list="machines" [ngModel]="incident.machine.name"/>
+        <datalist id="machines">          
+            <option *ngFor="let machine of machines;">{{machine.name}}</option>
+        </datalist>
+      </div>
+      
+    <div class="col-md-12 mb-2">
+        <textarea class="form-control">{{incident.description}}</textarea>
+      </div>
+      <div class="col-md-12" *ngIf="incident.createdBy">
+        <span>Created by: </span>{{incident.createdBy.name}}
+      </div>
+      <div class="col-md-12" *ngIf="incident.assignedTo">
+        <ng-select [items]="users" bindLabel="name" [(ngModel)]="incident.assignedTo.name"></ng-select>      
+      </div>
     </div>
-    <div>
-      {{comment.text}}
-    </div>
   </div>
+  <div class="col-md-4">
+<div class="row">
+      <div class="col-md-12 mb-2">
+        <form [formGroup]="comment" (ngSubmit)="submitComment()">
+          <textarea class="form-control" formControlName="text"></textarea>
+          <button class="btn btn-primary mt-2">Comment</button>
+        </form>
+          <div *ngFor="let comment of incident.comments;">
+            <div>
+              {{comment.user.name}}:
+            </div>
+            <div>
+              {{comment.text}}
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
 </div>

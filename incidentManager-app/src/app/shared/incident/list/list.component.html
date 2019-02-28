@@ -1,7 +1,11 @@
 <div class="incident-menu">
-<ul>
-  <li *ngFor="let incident of incidents;">
-    <a href="/incident/detail/{{incident.id}}">{{incident.header}} {{incident.createdBy}}</a>
-  </li>
-</ul>
+<table>
+  <tr *ngFor="let incident of incidents;">
+    <a href="/incident/detail/{{incident.id}}">
+    <td>{{incident.id}}</td>
+    <td >{{incident.header}} </td>    
+    <td>{{incident.createdBy}}</td>
+  </a>
+  </tr>
+</table>
 </div>

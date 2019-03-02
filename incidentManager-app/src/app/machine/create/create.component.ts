@@ -23,9 +23,17 @@ export class MachineCreateComponent implements OnInit {
       this.locations = locations;
     });
   }
-  onSubmit(){
-    this.machineService.create(this.create.value.name, this.create.value.location.id).subscribe((id) => {
-      this.router.navigateByUrl("/machine/detail/" + id);
-    });
+  onSubmit(){    
+    let form = this.create.value;
+    if(typeof(form.location) == "string"){
+      this.machineService.create(form.name, form.location).subscribe((id) => {
+        this.router.navigateByUrl("/machine/detail/" + id);
+      });
+    }
+    else{      
+      this.machineService.create(form.name, form.location.name).subscribe((id) => {
+        this.router.navigateByUrl("/machine/detail/" + id);
+      });
+    }
   }
 }

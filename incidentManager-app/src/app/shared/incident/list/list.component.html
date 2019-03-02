@@ -1,11 +1,20 @@
 <div class="incident-menu">
-<table>
-  <tr *ngFor="let incident of incidents;">
-    <a href="/incident/detail/{{incident.id}}">
-    <td>{{incident.id}}</td>
-    <td >{{incident.header}} </td>    
-    <td>{{incident.createdBy}}</td>
-  </a>
-  </tr>
-</table>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          #
+        </th>
+        <th>Fejl</th>
+        <th>Opretter</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let incident of incidents;" (click)="goToIncident(incident.id)">
+        <td>{{incident.id}}</td>
+        <td>{{incident.header}} </td>
+        <td>{{incident.createdBy.name}}</td>
+    </tr>
+  </tbody>
+  </table>
 </div>

@@ -6,10 +6,8 @@ import { Component, OnInit,Input } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MainMenuComponent implements OnInit {
-  
   constructor() { }
   @Input()
-
   ngOnInit() {
   }
 

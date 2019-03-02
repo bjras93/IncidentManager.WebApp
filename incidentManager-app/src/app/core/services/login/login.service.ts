@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { User } from '../../models/user';
+import { Observable, Subject } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,7 +17,7 @@ const httpOptions = {
 })
 export class LoginService {
   currentUser:  User;
-
+  currentUserSubject: Subject<User> = new Subject<User>();
   constructor(private http:HttpClient) {   
     this.setCurrentUser(JSON.parse(localStorage.getItem('user')))     
   } 
@@ -34,5 +35,6 @@ export class LoginService {
   }
   setCurrentUser(user: User){
     this.currentUser = user;
+    this.currentUserSubject.next(user);
   }
 }

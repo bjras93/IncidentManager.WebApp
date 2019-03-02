@@ -1,24 +1,24 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Incident Manager</a>
-        <ul class="navbar-nav px-3">
-          <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
-          </li>
-        </ul>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Incident Manager</a>  
+  <ul class="navbar-nav px-3 d-inline-block">   
+    <li class="nav-item text-nowrap d-inline-block">        
+      <a class="nav-link" href="#" (click)="signOut()" [hidden]="!user">Sign out</a>
+    </li>
+    <li class="nav-item d-inline-block navbar-button p-1">
+        <button class="navbar-toggler nav-mobile" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    </li>
+  </ul>  
 </nav>
 <div class="container-fluid">
-<div class="row">
+  <div class="row">
 
-<nav class="col-md-2 mt-5 sidebar">
-<app-main-menu></app-main-menu>
-</nav>
-<main class="col-md-9 col-lg-10">
-<div class="col-md-12 m-5">
-
-</div>
-<div class="col-md-12">
-<router-outlet></router-outlet>
-</div>
-</main>
-</div>
+    <app-main-menu class="col-md-2" [hidden]="!user"></app-main-menu>
+    <main role="main" class="col-md-9 pt-5">
+      <div class="col-md-12">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
 </div>

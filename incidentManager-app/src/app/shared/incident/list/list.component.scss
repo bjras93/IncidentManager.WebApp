@@ -1,9 +1,16 @@
 .incident-menu{
-    ul{
-        margin:0;
-        padding: 0;
+    tr{
+        border-bottom: 1px solid rgba(0,0,0,.09);
     }
-    li{
-        list-style: none;
+    td,th{        
+        padding: 10px 10px 10px 10px; 
+    }
+    td {
+        color: #8fa4c6;
+        cursor: pointer;              
+        border: 1px solid rgba(0,0,0,.09); 
+    }
+    table tbody tr:nth-of-type(odd) {
+        background-color: rgba(0,0,0,.05);
     }
 }

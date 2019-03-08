@@ -7,3 +7,10 @@
 a{
     text-decoration: none;
 }
+.t-clickable{
+    td{
+        color: $primary;
+        cursor: pointer;
+    }
+    
+}

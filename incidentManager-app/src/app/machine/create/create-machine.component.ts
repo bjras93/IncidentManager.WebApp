@@ -7,8 +7,8 @@ import { Location } from 'src/app/core/models/location';
 
 @Component({
   selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  templateUrl: './create-machine.component.html',
+  styleUrls: ['./create-machine.component.scss']
 })
 export class MachineCreateComponent implements OnInit {
   locations: Location[];

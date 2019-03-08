@@ -1,3 +1,30 @@
-<p>
-  machine works!
-</p>
+<div class="col-md-12">
+    <table class="table table-striped t-clickable">
+      <thead>
+        <th>
+          #
+        </th>
+        <th>
+          Maskine
+        </th>
+        <th>
+          Lokation
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let machine of machines" (click)="goToMachine(machine.id)">
+          <td>
+            {{machine.id}}
+          </td>
+          <td>
+            {{machine.name}}
+          </td>
+          <td *ngIf="machine.location">
+            {{machine.location.name}}
+          </td>
+          <td *ngIf="!machine.location">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>

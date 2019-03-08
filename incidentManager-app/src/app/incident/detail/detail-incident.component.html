@@ -1,0 +1,39 @@
+<div class="col-md-12 form-group" *ngIf="incident">
+  <h3>{{incident.header}}</h3>
+  <div class="row">
+    <div class="col-md-4 col-lg-2">
+      <div class="row">
+        <div class="col-md-12 mb-2">
+          <ng-select [items]="machines" bindLabel="name" [(ngModel)]="selectedMachine" ></ng-select>
+          
+        </div>
+
+        <div class="col-md-12 mb-2">
+          <textarea class="form-control">{{incident.description}}</textarea>
+        </div>
+        <div class="col-md-12" *ngIf="incident.createdBy">
+          <span>Opretter: </span>{{incident.createdBy.name}}
+        </div>
+      </div>
+    </div>    
+    <div class="col-md-4 col-lg-2">
+        <ng-select [items]="users" bindLabel="name" [(ngModel)]="selectUser"></ng-select>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-8 col-lg-4 mb-2">
+        <form [formGroup]="comment" (ngSubmit)="submitComment()">
+          <textarea class="form-control" formControlName="text"></textarea>
+          <button class="btn btn-primary mt-2">Comment</button>
+        </form>
+        <div class="card mt-3 p-1" *ngFor="let comment of incident.comments;">
+          <strong>
+            {{comment.user.name}}:
+          </strong>
+          <div>
+            {{comment.text}}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

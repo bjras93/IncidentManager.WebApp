@@ -1,32 +1,21 @@
-<div class="navbar-collapse-left">
-  <nav id="sidebar" class="sidebar collapse nav-mobile bg-light" id="navbarToggleExternalContent">
-    <div class="sidebar-sticky">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/machine/create">Opret maskine</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/incident/create">Opret fejlsag</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <nav class="sidebar nav-desktop bg-light">
-      <div class="sidebar-sticky">
+  <nav class="sidebar">
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" href="/">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/machine/create">Opret maskine</a>
+            <a class="nav-link" href="/machine/create" *ngIf="isAOrT">Opret maskine</a>
+          </li>
+          <li>
+              <a class="nav-link" href="/machine" *ngIf="isAOrT">Maskiner</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/incident/create">Opret fejlsag</a>
           </li>
         </ul>
-      </div>
+        <ul class="nav flex-column" *ngIf="isAdmin">
+            <li class="nav-item">
+                <a class="nav-link" href="/user/create">Opret bruger</a>
+              </li>
+        </ul>
     </nav>
-</div>

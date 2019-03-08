@@ -1,14 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Incident } from '../core/models/incident';
-import { IncidentService } from '../core/services/incident/incident.service';
-import { ActivatedRoute } from '@angular/router';
-import { Machine } from '../core/models/machine';
-import { MachineService } from '../core/services/machine/machine.service';
-import { FormGroup, FormControl } from '@angular/forms';
-import { LoginService } from '../core/services/login/login.service';
-import { Comment } from '../core/models/comment';
-import { UserService } from '../core/services/user/user.service';
-import { User } from '../core/models/user';
+import { formatDate } from '@angular/common';
+import { Component, OnInit, Input } from '@angular/core';
+import { IncidentService } from 'src/app/core/services/incident/incident.service';
+import { Incident } from 'src/app/core/models/incident';
+import { LoginService } from 'src/app/core/services/login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-incident',
@@ -16,31 +11,23 @@ import { User } from '../core/models/user';
   styleUrls: ['./incident.component.scss']
 })
 export class IncidentComponent implements OnInit {
-  incident:Incident;
-  users: User[];
-  machines: Machine[];
-  comment = new FormGroup ({
-      text: new FormControl('')
-  });
-  constructor(private incidentService: IncidentService, private machineService: MachineService, private loginService: LoginService, private userService: UserService, private route: ActivatedRoute) { }
-
+  incidents: Incident[];
+  isLoggedIn: boolean;
+  constructor(private incidentService: IncidentService, private loginService: LoginService, private router: Router) { }
+  @Input()
   ngOnInit() {
-    this.incidentService.get(parseInt(this.route.snapshot.paramMap.get("id"))).subscribe((incident)=> {
-      this.incident = incident;
-    });
-    this.machineService.getAll().subscribe((machines)=> {
-      this.machines = machines;
-    });
-    this.userService.getAllByType(2).subscribe((users) => {
-      this.users = users;
-    });
-  }
-  submitComment(){
-    this.incidentService.comment(this.loginService.currentUser.id, parseInt(this.route.snapshot.paramMap.get("id")), this.comment.value.text).subscribe((comment)=> {
-      this.incident.comments.push(comment);
-      console.log(this.incident)
-    });
 
-  };
+    if (this.loginService.currentUser != null) {
+      this.incidentService.getAll().subscribe((results) => {
+        results.forEach((result: Incident) => {
+          result.created = formatDate(result.created, 'dd-MM-yyyy', 'da-DK');
+        });
+        this.incidents = results;
+      });
+    }
+  }
+  goToIncident(id: number) {
+    this.router.navigateByUrl('/incident/detail/' + id);
+  }
 
 }

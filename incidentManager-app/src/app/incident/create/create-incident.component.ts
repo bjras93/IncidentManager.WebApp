@@ -10,9 +10,9 @@ import { LoginService } from 'src/app/core/services/login/login.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-create-incident',
+  templateUrl: './create-incident.component.html',
+  styleUrls: ['./create-incident.component.scss']
 })
 export class IncidentCreateComponent implements OnInit {
   machines: Machine[];

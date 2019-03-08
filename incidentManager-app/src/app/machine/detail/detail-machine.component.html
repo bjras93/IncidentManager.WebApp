@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-12 form-group" *ngIf="machine">
+        <div class="col-md-4 mt-3">
+            <input type="text" class="form-control" [(ngModel)]="machine.name"/>
+        </div>
+        <div class="col-md-4 mt-3">
+            <select *ngIf="locations" [(ngModel)]="selectedLocation" class="form-control">
+                <option *ngFor="let location of locations">
+                    {{location.name}}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-4 mt-3">
+            <button class="btn btn-primary" >
+                Gem
+            </button>
+        </div>
+    </div>
+</div>
+
+-------------- MANGLER IMPLEMENTERING API -------------------

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MachineCreateComponent } from './create.component';
+import { MachineCreateComponent } from './create-machine.component';
 
 describe('MachineCreateComponent', () => {
   let component: MachineCreateComponent;

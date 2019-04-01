@@ -11,6 +11,9 @@ import { IncidentCreateComponent } from './incident/create/create-incident.compo
 import { IncidentDetailComponent } from './incident/detail/detail-incident.component';
 import { UserCreateComponent } from './user/create/user-create.component';
 import { UserDetailComponent } from './user/detail/user-detail.component';
+import { ProjectDetailComponent } from './project/detail/detail.component';
+import { ProjectCreateComponent } from './project/create/create.component';
+import { ProjectComponent } from './project/project.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -21,6 +24,9 @@ const routes: Routes = [
   { path: 'incident/create', component: IncidentCreateComponent, canActivate: [AuthGuard] },
   { path: 'user/create', component: UserCreateComponent, canActivate: [AuthGuard] },
   { path: 'user/detail/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
+  { path: 'project/detail/:id', component: ProjectDetailComponent, canActivate: [AuthGuard] },
+  { path: 'project/create', component: ProjectCreateComponent, canActivate: [AuthGuard] },
+  { path: 'project', component: ProjectComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent }
 ];
 

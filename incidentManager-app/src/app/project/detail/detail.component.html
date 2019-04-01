@@ -1,0 +1,49 @@
+<div class="col-md-12 form-group" *ngIf="project">
+  <h3>{{project.header}}</h3>
+  <form [formGroup]="projectForm">
+  <div class="row">
+    <div class="col-md-4 col-lg-2">
+      <div class="row">
+        <div class="col-md-12 mb-2">
+          <label>Beskrivelse</label>
+          <textarea class="form-control" formControlName="description">{{project.description}}</textarea>
+        </div>
+        <div class="col-md-12" *ngIf="project.createdBy">
+          <span>Opretter: </span>{{project.createdBy.name}}
+        </div>
+      </div>
+    </div>   
+    
+    <div class="col-md-4 col-lg-2">
+      <div class="col-md-12 mb-2">
+        <label>Tekniker</label>
+        <ng-select [items]="users" bindLabel="name" formControlName="assignedTo"></ng-select>
+      </div>
+        <div class="col-md-12 mb-2">
+            <label>Status</label>
+            <select class="form-control" formControlName="active">
+              <option value="false">Løst</option>
+              <option value="true">Igangværende</option>
+            </select>
+          </div>
+      </div>    
+  </div>
+</form>
+  <div class="row">
+      <div class="col-md-8 col-lg-4 mb-2 mt-4">
+        <form [formGroup]="comment" (ngSubmit)="submitComment()">
+          <textarea class="form-control" formControlName="text"></textarea>
+          <app-textarea></app-textarea>
+          <button class="btn btn-primary mt-2">Kommentér</button>
+        </form>
+        <div class="card mt-3 p-1" *ngFor="let comment of project.comments;">
+          <strong>
+            {{comment.user.name}}:
+          </strong>
+          <div>
+            {{comment.text}}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

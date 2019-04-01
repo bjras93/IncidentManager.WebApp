@@ -1,0 +1,30 @@
+<div class="col-md-12" *ngIf="projects">
+  <div *ngIf="projects.length == 0">
+    <span>{{noResult}}</span>
+  </div>
+  <table class="table table-striped t-clickable" *ngIf="projects.length > 0">
+      <thead>
+        <tr>
+          <th>
+            #
+          </th>
+          <th>Projekt</th>
+          <th>Oprettet</th>
+          <th>Opretter</th>
+          <th>Tekniker</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects | paginate: { itemsPerPage: 10, currentPage: p }" (click)="goToProject(project.id)">
+          <td>{{project.id}}</td>
+          <td>{{project.header}} </td>
+          <td>{{project.created}}</td>
+          <td>{{project.createdBy.name}}</td>
+          <td>
+             <span *ngIf="project.assignedTo">{{project.assignedTo.name}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls *ngIf="projects.length > 10" (pageChange)="p = $event"></pagination-controls>
+  </div>

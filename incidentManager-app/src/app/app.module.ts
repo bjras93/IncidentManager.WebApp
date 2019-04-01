@@ -26,6 +26,9 @@ import { TextareaComponent } from './shared/form/textarea/textarea.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProjectComponent } from './project/project.component';
+import { ProjectCreateComponent } from './project/create/create.component';
+import { ProjectDetailComponent } from './project/detail/detail.component';
 
 registerLocaleData(localeDk);
 
@@ -46,7 +49,10 @@ registerLocaleData(localeDk);
     UserCreateComponent,
     MachineDetailComponent,
     UserDetailComponent,
-    TextareaComponent
+    TextareaComponent,
+    ProjectComponent,
+    ProjectCreateComponent,
+    ProjectDetailComponent
   ],
   imports: [
     BrowserModule,

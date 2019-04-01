@@ -1,5 +1,6 @@
 import { LoginService } from 'src/app/core/services/login/login.service';
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-menu',
@@ -7,19 +8,20 @@ import { Component, OnInit,Input } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MainMenuComponent implements OnInit {
-  constructor(private loginService: LoginService) {     
+  constructor(private loginService: LoginService, private router: Router) {
     this.isAdmin = this.loginService.isAdmin();
-    this.isAOrT = this.loginService.isRoles([1,2])
-    loginService.currentUserSubject.subscribe((data)=>{
+    this.isTech = this.loginService.isRoles([1, 2]);
+    loginService.currentUserSubject.subscribe((data) => {
       this.isAdmin = this.loginService.isAdmin();
-      this.isAOrT = this.loginService.isRoles([1,2])
+      this.isTech = this.loginService.isRoles([1, 2]);
     });
   }
   @Input()
   isAdmin: boolean;
-  isAOrT: boolean;
+  isTech: boolean;
   ngOnInit() {
-    
   }
-
+  routeChange(path) {
+    this.router.navigateByUrl(path);
+  }
 }

@@ -22,21 +22,28 @@ export class IncidentCreateComponent implements OnInit {
     description: new FormControl(''),
     machine: new FormControl(),
     user: new FormControl()
-  });  
-  constructor(private machineService: MachineService, private userService: UserService, private incidentService: IncidentService, private loginService: LoginService, private router: Router) { }
+  });
+  constructor(private machineService: MachineService,
+              private userService: UserService,
+              private incidentService: IncidentService,
+              private loginService: LoginService, private router: Router) { }
 
-  ngOnInit() {    
-    this.machineService.getAll().subscribe((machines)=> {
+  ngOnInit() {
+    this.machineService.getAll().subscribe((machines) => {
       this.machines = machines;
     });
     this.userService.getAllByType(2).subscribe((users) => {
       this.users = users;
     });
   }
-  onSubmit(){
-    const incident = this.create.value;       
-    this.incidentService.create(this.loginService.currentUser.id, incident.user.id, incident.header, incident.description, incident.machine.id).subscribe((id)=> {      
-      this.router.navigateByUrl("/incident/detail/" + id);
+  onSubmit() {
+    const incident = this.create.value;
+    this.incidentService.create(this.loginService.currentUser.id,
+      incident.user.id,
+      incident.header,
+      incident.description,
+      incident.machine.id).subscribe((id) => {
+      this.router.navigateByUrl('/incident/detail/' + id);
     });
   }
 

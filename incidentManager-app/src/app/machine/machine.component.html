@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-12" *ngIf="machines">
     <table class="table table-striped t-clickable">
       <thead>
         <th>
@@ -12,7 +12,7 @@
         </th>
       </thead>
       <tbody>
-        <tr *ngFor="let machine of machines" (click)="goToMachine(machine.id)">
+        <tr *ngFor="let machine of machines | paginate: { itemsPerPage: 10, currentPage: p }" (click)="goToMachine(machine.id)">
           <td>
             {{machine.id}}
           </td>
@@ -27,4 +27,5 @@
         </tr>
       </tbody>
     </table>
-    </div>
+    <pagination-controls *ngIf="machines.length > 10" (pageChange)="p = $event"></pagination-controls>
+  </div>

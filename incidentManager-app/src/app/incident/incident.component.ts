@@ -13,17 +13,46 @@ import { Router } from '@angular/router';
 export class IncidentComponent implements OnInit {
   incidents: Incident[];
   isLoggedIn: boolean;
+  isTech: boolean;
+  isOperator: boolean;
+  noResult: string;
   constructor(private incidentService: IncidentService, private loginService: LoginService, private router: Router) { }
   @Input()
   ngOnInit() {
-
+    this.isTech = this.loginService.isRoles([2]);
+    this.isOperator = this.loginService.isRoles([3]);
     if (this.loginService.currentUser != null) {
-      this.incidentService.getAll().subscribe((results) => {
-        results.forEach((result: Incident) => {
-          result.created = formatDate(result.created, 'dd-MM-yyyy', 'da-DK');
+      if (this.isTech) {
+        this.incidentService.getAssigned(this.loginService.currentUser.id).subscribe((incidents) => {
+          incidents.forEach((incident: Incident) => {
+            incident.created = formatDate(incident.created, 'dd-MM-yyyy', 'da-DK');
+          });
+          this.incidents = incidents;
+          if (this.incidents.length === 0) {
+            this.noResult = 'Kunne ikke finde nogen fejlsager tildelt dig';
+          }
         });
-        this.incidents = results;
-      });
+      } else if (this.isOperator) {
+        this.incidentService.getCreated(this.loginService.currentUser.id).subscribe((incidents) => {
+          incidents.forEach((incident: Incident) => {
+            incident.created = formatDate(incident.created, 'dd-MM-yyyy', 'da-DK');
+          });
+          this.incidents = incidents;
+          if (this.incidents.length === 0) {
+            this.noResult = 'Kunne ikke finde nogen fejlsager lavet af dig';
+          }
+        });
+      } else {
+        this.incidentService.getAll().subscribe((results) => {
+          results.forEach((result: Incident) => {
+            result.created = formatDate(result.created, 'dd-MM-yyyy', 'da-DK');
+          });
+          this.incidents = results;
+          if (this.incidents.length === 0) {
+            this.noResult = 'Kunne ikke finde nogen fejlsager';
+          }
+        });
+      }
     }
   }
   goToIncident(id: number) {

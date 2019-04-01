@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "../node_modules/@ng-select/ng-select/scss/default.theme.scss";
+@import "../node_modules/ngx-toastr/toastr.css";
+@import "../node_modules/ngx-toastr/toastr-bs4-alert.scss";
 *{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -11,6 +13,14 @@ a{
     td{
         color: $primary;
         cursor: pointer;
+    }    
+}
+.toast-bootstrap-compatibility-fix {
+    opacity:1;
+  }
+.toast-container .toast {
+    box-shadow: none !important;
+    &:active{
+        box-shadow:none !important;
     }
-    
 }

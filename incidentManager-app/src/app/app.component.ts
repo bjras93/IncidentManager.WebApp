@@ -11,18 +11,15 @@ import { User } from './core/models/user';
 export class AppComponent {
   title = 'Incident Manager';
   user: User;
-  constructor(private router: Router, private loginService: LoginService) { 
+  constructor(private router: Router, private loginService: LoginService) {
     this.user = loginService.currentUser;
     loginService.currentUserSubject.subscribe((user) => {
       this.user = user;
     });
   }
-  ngOnInit(){    
-    
+  ngOnInit() { }
+  signOut() {
+    localStorage.removeItem('user');
+    this.router.navigateByUrl('/login');
   }
-signOut() {
-  localStorage.removeItem("user");
-  this.router.navigateByUrl("/login")
-}
-
 }

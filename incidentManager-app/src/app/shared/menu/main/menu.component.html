@@ -1,21 +1,23 @@
-  <nav class="sidebar">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/machine/create" *ngIf="isAOrT">Opret maskine</a>
-          </li>
-          <li>
-              <a class="nav-link" href="/machine" *ngIf="isAOrT">Maskiner</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/incident/create">Opret fejlsag</a>
-          </li>
-        </ul>
-        <ul class="nav flex-column" *ngIf="isAdmin">
-            <li class="nav-item">
-                <a class="nav-link" href="/user/create">Opret bruger</a>
-              </li>
-        </ul>
-    </nav>
+<nav class="col-md-2 pt-2 sidebar bg-light">
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <span class="nav-link" href="" (click)="routeChange('/')">Dashboard</span>
+    </li>
+    <li>
+      <span class="nav-link" href="" (click)="routeChange('/machine')" *ngIf="isTech">Maskiner</span>
+      <ul>
+        <li class="nav-item">
+          <span class="nav-link" href="" (click)="routeChange('/machine/create')" *ngIf="isTech">Opret maskine</span>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <span class="nav-link" href="" (click)="routeChange('/incident/create')">Opret fejlsag</span>
+    </li>
+  </ul>
+  <ul class="nav flex-column" *ngIf="isAdmin">
+    <li class="nav-item">
+      <span class="nav-link" (click)="routeChange('/user/create')">Opret bruger</span>
+    </li>
+  </ul>
+</nav>

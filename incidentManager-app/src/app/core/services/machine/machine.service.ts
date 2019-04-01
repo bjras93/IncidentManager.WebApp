@@ -14,19 +14,24 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MachineService {
-  constructor(private http:HttpClient) { }
-  get(id:number) {          
-    return this.http.post<Machine>(environment.apiUrl + "Machine/Get", { "id":id},httpOptions).pipe(map(machine => {     
+  constructor(private http: HttpClient) { }
+  get(id: number) {
+    return this.http.post<Machine>(environment.apiUrl + 'Machine/Get', { id }, httpOptions).pipe(map(machine => {
       return machine;
     }));
   }
-  create(name:string, location:string) {          
-    return this.http.post<number>(environment.apiUrl + "Machine/Create", { "name":name, "location": location },httpOptions).pipe(map(id => {     
+  create(name: string, location: string) {
+    return this.http.post<number>(environment.apiUrl + 'Machine/Create', { name, location }, httpOptions).pipe(map(id => {
       return id;
     }));
   }
-  getAll() {          
-    return this.http.get<Machine[]>(environment.apiUrl + "Machine/GetAll",httpOptions).pipe(map(machines => {     
+  update(machine: Machine) {
+    return this.http.post<number>(environment.apiUrl + 'Machine/Update', { machine }, httpOptions).pipe(map(id => {
+      return id;
+    }));
+  }
+  getAll() {
+    return this.http.get<Machine[]>(environment.apiUrl + 'Machine/GetAll', httpOptions).pipe(map(machines => {
       return machines;
     }));
   }

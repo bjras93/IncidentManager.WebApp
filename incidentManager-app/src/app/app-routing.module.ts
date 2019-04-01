@@ -14,7 +14,7 @@ import { UserDetailComponent } from './user/detail/user-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'incident/detail/:id', component: IncidentDetailComponent, canActivate: [AuthGuard] },  
+  { path: 'incident/detail/:id', component: IncidentDetailComponent, canActivate: [AuthGuard] },
   { path: 'machine', component: MachineComponent, canActivate: [AuthGuard] },
   { path: 'machine/detail/:id', component: MachineDetailComponent, canActivate: [AuthGuard] },
   { path: 'machine/create', component: MachineCreateComponent, canActivate: [AuthGuard] },
